@@ -16,4 +16,9 @@
     <PackageReference Include="coverlet.collector" Version="3.1.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TylerHarker.Blogging.BlobStorage\TylerHarker.Blogging.BlobStorage.csproj" />
+    <ProjectReference Include="..\TylerHarker.Blogging\TylerHarker.Blogging.csproj" />
+  </ItemGroup>
+
 </Project>
