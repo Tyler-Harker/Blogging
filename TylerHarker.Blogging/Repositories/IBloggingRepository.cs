@@ -11,7 +11,7 @@ namespace TylerHarker.Blogging.Repositories
     public interface IBloggingRepository
     {
         Task<Blog> Save(Blog blog);
-        Task<Blog> GetById(Guid id);
-        Task<IQueryable<Blob>> ListBlogs();
+        IQueryable<Blog> GetById(Guid id);
+        IQueryable<Blog> ListBlogs();
     }
 }

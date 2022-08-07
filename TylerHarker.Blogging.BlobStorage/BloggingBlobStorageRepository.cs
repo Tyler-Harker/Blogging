@@ -16,12 +16,13 @@ namespace TylerHarker.Blogging.BlobStorage
         {
             _config = config;
         }
-        public Task<Blog> GetById(Guid id)
+
+        public IQueryable<Blog> GetById(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IQueryable<Blob>> ListBlogs()
+        public IQueryable<Blog> ListBlogs()
         {
             throw new NotImplementedException();
         }

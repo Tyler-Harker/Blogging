@@ -8,12 +8,23 @@ namespace TylerHarker.Blogging.Models
 {
     public class Blog
     {
-        public Guid Id { get; set; }
-        public bool IsActive { get; set; }
-        public string Title { get; set; }
-        public string HtmlText { get; set; }
-        public List<string> Tags { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime LastUpdatedAt { get; set; }
+        public Blog(string title, string htmlText, List<string> tags = null)
+        {
+            Title = title;
+            HtmlText = htmlText;
+
+            if(tags is not null)
+            {
+                Tags = tags;
+            }
+        }
+
+        public Guid Id { get; protected set; } = Guid.NewGuid();
+        public bool IsActive { get; protected set; } = true;
+        public string Title { get; protected set; }
+        public string HtmlText { get; protected set; }
+        public List<string> Tags { get; protected set; } = new List<string>();
+        public DateTime CreatedAt { get; protected set; } = DateTime.UtcNow;
+        public DateTime LastUpdatedAt { get; protected set; } = DateTime.UtcNow;
     }
 }
