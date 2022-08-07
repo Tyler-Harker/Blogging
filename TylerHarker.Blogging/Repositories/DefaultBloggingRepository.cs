@@ -10,7 +10,7 @@ namespace TylerHarker.Blogging.Repositories
 {
     public class DefaultBloggingRepository : IBloggingRepository
     {
-        public IQueryable<Blog> GetById(Guid id)
+        public Task<Blog> GetById(Guid id)
         {
             throw new NotImplementedException();
         }

@@ -33,14 +33,14 @@ namespace TylerHarker.Blogging.NUnit
         public void ConstructorSetsCorrectNumberOfTagsAsExpected1()
         {
             var blog = new Blog("test title", "test html", new List<string> { });
-            Assert.That(0, Is.EqualTo(blog.Tags.Count));
+            Assert.That(blog.Tags.Count, Is.EqualTo(0));
         }
 
         [Test]
         public void ConstructorSetsCorrectNumberOfTagsAsExpected2()
         {
             var blog = new Blog("test title", "test html", new List<string> { "test tag" });
-            Assert.That(1, Is.EqualTo(blog.Tags.Count));
+            Assert.That(blog.Tags.Count,Is.EqualTo(1));
         }
 
         [Test]

@@ -17,7 +17,7 @@ namespace TylerHarker.Blogging.BlobStorage
             _config = config;
         }
 
-        public IQueryable<Blog> GetById(Guid id)
+        public Task<Blog> GetById(Guid id)
         {
             throw new NotImplementedException();
         }

@@ -19,7 +19,7 @@ namespace TylerHarker.Blogging.Models
             }
         }
 
-        public Guid Id { get; protected set; } = Guid.NewGuid();
+        public Guid Id { get; protected set; } = Guid.Empty;
         public bool IsActive { get; protected set; } = true;
         public string Title { get; protected set; }
         public string HtmlText { get; protected set; }
