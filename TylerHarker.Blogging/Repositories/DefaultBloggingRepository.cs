@@ -5,17 +5,11 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using TylerHarker.Blogging.Models;
-using TylerHarker.Blogging.Repositories;
 
-namespace TylerHarker.Blogging.BlobStorage
+namespace TylerHarker.Blogging.Repositories
 {
-    public class BloggingBlobStorageRepository : IBloggingRepository
+    public class DefaultBloggingRepository : IBloggingRepository
     {
-        private readonly BlobStorageProviderConfiguration _config;
-        public BloggingBlobStorageRepository(BlobStorageProviderConfiguration config)
-        {
-            _config = config;
-        }
         public Task<Blog> GetById(Guid id)
         {
             throw new NotImplementedException();

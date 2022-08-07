@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TylerHarker.Blogging.Repositories;
 using TylerHarker.Blogging.Services;
 
 namespace TylerHarker.Blogging.Extensions
@@ -13,7 +14,24 @@ namespace TylerHarker.Blogging.Extensions
         public static IBloggingServiceCollection AddBlogging(this IServiceCollection services)
         {
             services.AddTransient<IBloggingService, BloggingService>();
-            return (IBloggingServiceCollection)services;
+            services.AddTransient<IBloggingRepository, DefaultBloggingRepository>();
+            return new IBloggingServiceCollection { Services = services };
+        }
+        public static IBloggingServiceCollection RemoveDefaultBloggingRepository(this IBloggingServiceCollection bloggingServices)
+        {
+            ServiceDescriptor serviceToRemove = null;
+            foreach(var service in bloggingServices.Services)
+            {
+                if(service.ImplementationType == typeof(DefaultBloggingRepository))
+                {
+                    serviceToRemove = service;
+                }
+            }
+            if(serviceToRemove != null)
+            {
+                bloggingServices.Services.Remove(serviceToRemove);
+            }
+            return bloggingServices;
         }
     }
 }
