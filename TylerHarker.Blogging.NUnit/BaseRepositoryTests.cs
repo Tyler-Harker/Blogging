@@ -8,28 +8,28 @@ using TylerHarker.Blogging.BlobStorage;
 using TylerHarker.Blogging.Extensions;
 using TylerHarker.Blogging.Models;
 using TylerHarker.Blogging.Repositories;
-using TylerHarker.Blogging.Services;
 
 namespace TylerHarker.Blogging.NUnit
 {
-    public class BloggingBlobStorageRepositoryTests
+    public abstract class BaseRepositoryTests
     {
         private IServiceCollection _services;
         private IServiceProvider _serviceProvider;
-        private IBloggingRepository _bloggingRepository;
+        private IBlogRepository _bloggingRepository;
 
+        private readonly Func<BlogServiceCollection, BlogServiceCollection> _providerSetup;
 
+        public BaseRepositoryTests(Func<BlogServiceCollection, BlogServiceCollection> providerSetup)
+        {
+            _providerSetup = providerSetup;
+        }
         [SetUp]
         public void Setup()
         {
             _services = new ServiceCollection();
-            _services.AddBlogging()
-                .AddBlobStorageProvider(new BlobStorageProviderConfiguration
-                {
-                    ConnectionString = "AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;DefaultEndpointsProtocol=http;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;QueueEndpoint=http://127.0.0.1:10001/devstoreaccount1;TableEndpoint=http://127.0.0.1:10002/devstoreaccount1;"
-                }); ;
+            _providerSetup(_services.AddBlogging());
             _serviceProvider = _services.BuildServiceProvider();
-            _bloggingRepository = _serviceProvider.GetRequiredService<IBloggingRepository>();
+            _bloggingRepository = _serviceProvider.GetRequiredService<IBlogRepository>();
 
         }
 

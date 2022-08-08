@@ -12,12 +12,12 @@ using TylerHarker.Blogging.Repositories;
 
 namespace TylerHarker.Blogging.BlobStorage
 {
-    public class BloggingBlobStorageRepository : IBloggingRepository
+    public class BlogBlobStorageRepository : IBlogRepository
     {
         private readonly BlobStorageProviderConfiguration _config;
         private readonly BlobServiceClient _blobServiceClient;
         private readonly BlobContainerClient _blobContainerClient;
-        public BloggingBlobStorageRepository(BlobStorageProviderConfiguration config)
+        public BlogBlobStorageRepository(BlobStorageProviderConfiguration config)
         {
             _config = config;
             _blobServiceClient = new BlobServiceClient(config.ConnectionString);

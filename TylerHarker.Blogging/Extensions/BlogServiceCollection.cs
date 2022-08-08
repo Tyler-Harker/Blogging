@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TylerHarker.Blogging.Extensions
 {
-    public struct IBloggingServiceCollection
+    public struct BlogServiceCollection
     {
         public IServiceCollection Services;
     }

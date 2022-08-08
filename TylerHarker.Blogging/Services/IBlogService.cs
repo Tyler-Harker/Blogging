@@ -8,7 +8,7 @@ using TylerHarker.Blogging.Models;
 
 namespace TylerHarker.Blogging.Services
 {
-    public interface IBloggingService
+    public interface IBlogService
     {
         Task<Blog> Save(Blog blog);
         Task<Blog> GetById(Guid id);

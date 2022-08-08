@@ -16,7 +16,10 @@ namespace TylerHarker.Blogging.NUnit
         public void Setup()
         {
             _services = new ServiceCollection();
-            _blobStorageConfig = new BlobStorageProviderConfiguration();
+            _blobStorageConfig = new BlobStorageProviderConfiguration
+            {
+                ConnectionString = "AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;DefaultEndpointsProtocol=http;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;QueueEndpoint=http://127.0.0.1:10001/devstoreaccount1;TableEndpoint=http://127.0.0.1:10002/devstoreaccount1;"
+            };
         }
 
         [Test]
@@ -24,7 +27,7 @@ namespace TylerHarker.Blogging.NUnit
         {
             _services.AddBlogging();
             _serviceProvider = _services.BuildServiceProvider();
-            IBloggingService bloggingService = _serviceProvider.GetService<IBloggingService>();
+            IBlogService bloggingService = _serviceProvider.GetService<IBlogService>();
 
             Assert.NotNull(bloggingService);
         }
@@ -34,7 +37,7 @@ namespace TylerHarker.Blogging.NUnit
         {
             _services.AddBlogging();
             _serviceProvider = _services.BuildServiceProvider();
-            IBloggingRepository bloggingRepository = _serviceProvider.GetService<IBloggingRepository>();
+            IBlogRepository bloggingRepository = _serviceProvider.GetService<IBlogRepository>();
 
             Assert.NotNull(bloggingRepository);
         }
@@ -46,8 +49,8 @@ namespace TylerHarker.Blogging.NUnit
                 .AddBlobStorageProvider(_blobStorageConfig);
             _serviceProvider = _services.BuildServiceProvider();
 
-            IBloggingRepository bloggingRepository = _serviceProvider.GetService<IBloggingRepository>();
-            Assert.That(typeof(InMemoryBlogRepository), Is.Not.EqualTo(bloggingRepository?.GetType()));
+            IBlogRepository bloggingRepository = _serviceProvider.GetService<IBlogRepository>();
+            Assert.That(typeof(InMemoryBlogRepositoryTests), Is.Not.EqualTo(bloggingRepository?.GetType()));
         }
 
         [Test]
@@ -57,8 +60,8 @@ namespace TylerHarker.Blogging.NUnit
                 .AddBlobStorageProvider(_blobStorageConfig);
             _serviceProvider = _services.BuildServiceProvider();
 
-            IBloggingRepository bloggingRepository = _serviceProvider.GetService<IBloggingRepository>();
-            Assert.That(typeof(BloggingBlobStorageRepository), Is.EqualTo(bloggingRepository?.GetType()));
+            IBlogRepository bloggingRepository = _serviceProvider.GetService<IBlogRepository>();
+            Assert.That(typeof(BlogBlobStorageRepository), Is.EqualTo(bloggingRepository?.GetType()));
         }
     }
 }

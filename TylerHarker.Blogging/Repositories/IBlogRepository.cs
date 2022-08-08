@@ -8,7 +8,7 @@ using TylerHarker.Blogging.Models;
 
 namespace TylerHarker.Blogging.Repositories
 {
-    public interface IBloggingRepository
+    public interface IBlogRepository
     {
         Task<Blog> Save(Blog blog);
         Task<Blog> GetById(Guid id);

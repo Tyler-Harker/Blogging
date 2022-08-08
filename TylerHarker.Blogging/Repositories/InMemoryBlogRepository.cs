@@ -8,23 +8,30 @@ using TylerHarker.Blogging.Models;
 
 namespace TylerHarker.Blogging.Repositories
 {
-    public class InMemoryBlogRepository : IBloggingRepository
+    public class InMemoryBlogRepository : IBlogRepository, IInMemoryBlogRepository
     {
         private Dictionary<Guid, Blog> _blogs = new Dictionary<Guid, Blog>();
 
-        public Task<Blog> GetById(Guid id)
+        public async Task<Blog> GetById(Guid id)
         {
-            throw new NotImplementedException();
+            await Task.CompletedTask;
+            return _blogs.GetValueOrDefault(id);
         }
 
         public IQueryable<Blog> ListBlogs()
         {
-            throw new NotImplementedException();
+            return _blogs.Values.AsQueryable();
         }
 
-        public Task<Blog> Save(Blog blog)
+        public async Task<Blog> Save(Blog blog)
         {
-            throw new NotImplementedException();
+            await Task.CompletedTask;
+            if(blog.Id == Guid.Empty)
+            {
+                blog.SetCreatedTrue();
+            }
+            _blogs[blog.Id] = blog;
+            return blog;
         }
     }
 }

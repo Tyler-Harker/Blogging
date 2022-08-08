@@ -11,13 +11,15 @@ namespace TylerHarker.Blogging.Extensions
 {
     public static class IServicesCollectionExtensions
     {
-        public static IBloggingServiceCollection AddBlogging(this IServiceCollection services)
+        public static BlogServiceCollection AddBlogging(this IServiceCollection services)
         {
-            services.AddTransient<IBloggingService, BloggingService>();
-            services.AddTransient<IBloggingRepository, InMemoryBlogRepository>();
-            return new IBloggingServiceCollection { Services = services };
+            var inMemoryBlogRepository = new InMemoryBlogRepository();
+            services.AddTransient<IBlogService, BlogService>();
+            services.AddSingleton<IBlogRepository, InMemoryBlogRepository>(n => inMemoryBlogRepository);
+            services.AddSingleton<IInMemoryBlogRepository, InMemoryBlogRepository>(n => inMemoryBlogRepository);
+            return new BlogServiceCollection { Services = services };
         }
-        public static IBloggingServiceCollection RemoveDefaultBloggingRepository(this IBloggingServiceCollection bloggingServices)
+        public static BlogServiceCollection RemoveDefaultBloggingRepository(this BlogServiceCollection bloggingServices)
         {
             ServiceDescriptor serviceToRemove = null;
             foreach(var service in bloggingServices.Services)

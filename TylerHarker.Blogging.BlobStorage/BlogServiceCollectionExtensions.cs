@@ -9,13 +9,13 @@ using TylerHarker.Blogging.Repositories;
 
 namespace TylerHarker.Blogging.BlobStorage
 {
-    public static class BloggingServiceCollectionExtensions
+    public static class BlogServiceCollectionExtensions
     {
-        public static IBloggingServiceCollection AddBlobStorageProvider(this IBloggingServiceCollection bloggingServices, BlobStorageProviderConfiguration config)
+        public static BlogServiceCollection AddBlobStorageProvider(this BlogServiceCollection bloggingServices, BlobStorageProviderConfiguration config)
         {
             bloggingServices.RemoveDefaultBloggingRepository();
             bloggingServices.Services.AddSingleton<BlobStorageProviderConfiguration>(config);
-            bloggingServices.Services.AddSingleton<IBloggingRepository, BloggingBlobStorageRepository>();
+            bloggingServices.Services.AddSingleton<IBlogRepository, BlogBlobStorageRepository>();
             return bloggingServices;
         }
     }
