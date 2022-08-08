@@ -26,5 +26,10 @@ namespace TylerHarker.Blogging.Models
         public List<string> Tags { get; protected set; } = new List<string>();
         public DateTime CreatedAt { get; protected set; } = DateTime.UtcNow;
         public DateTime LastUpdatedAt { get; protected set; } = DateTime.UtcNow;
+
+        public void SetCreatedTrue()
+        {
+            Id = Guid.NewGuid();
+        }
     }
 }

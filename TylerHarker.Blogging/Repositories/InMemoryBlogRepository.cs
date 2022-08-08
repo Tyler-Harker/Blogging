@@ -8,8 +8,10 @@ using TylerHarker.Blogging.Models;
 
 namespace TylerHarker.Blogging.Repositories
 {
-    public class DefaultBloggingRepository : IBloggingRepository
+    public class InMemoryBlogRepository : IBloggingRepository
     {
+        private Dictionary<Guid, Blog> _blogs = new Dictionary<Guid, Blog>();
+
         public Task<Blog> GetById(Guid id)
         {
             throw new NotImplementedException();

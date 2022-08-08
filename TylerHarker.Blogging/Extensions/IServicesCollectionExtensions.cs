@@ -14,7 +14,7 @@ namespace TylerHarker.Blogging.Extensions
         public static IBloggingServiceCollection AddBlogging(this IServiceCollection services)
         {
             services.AddTransient<IBloggingService, BloggingService>();
-            services.AddTransient<IBloggingRepository, DefaultBloggingRepository>();
+            services.AddTransient<IBloggingRepository, InMemoryBlogRepository>();
             return new IBloggingServiceCollection { Services = services };
         }
         public static IBloggingServiceCollection RemoveDefaultBloggingRepository(this IBloggingServiceCollection bloggingServices)
@@ -22,7 +22,7 @@ namespace TylerHarker.Blogging.Extensions
             ServiceDescriptor serviceToRemove = null;
             foreach(var service in bloggingServices.Services)
             {
-                if(service.ImplementationType == typeof(DefaultBloggingRepository))
+                if(service.ImplementationType == typeof(InMemoryBlogRepository))
                 {
                     serviceToRemove = service;
                 }

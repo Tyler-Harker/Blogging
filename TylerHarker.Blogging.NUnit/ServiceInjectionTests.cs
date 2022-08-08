@@ -47,7 +47,7 @@ namespace TylerHarker.Blogging.NUnit
             _serviceProvider = _services.BuildServiceProvider();
 
             IBloggingRepository bloggingRepository = _serviceProvider.GetService<IBloggingRepository>();
-            Assert.That(typeof(DefaultBloggingRepository), Is.Not.EqualTo(bloggingRepository?.GetType()));
+            Assert.That(typeof(InMemoryBlogRepository), Is.Not.EqualTo(bloggingRepository?.GetType()));
         }
 
         [Test]

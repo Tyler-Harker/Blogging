@@ -8,8 +8,7 @@ namespace TylerHarker.Blogging.BlobStorage
 {
     public class BlobStorageProviderConfiguration
     {
-        public string AccountName { get; set; }
-        public string AccountKey { get; set; }
-        public string ContainerName { get; set; } = "Blogs";
+        public string ConnectionString { get; set; }
+        public string Container { get; set; } = "Blogs";
     }
 }
